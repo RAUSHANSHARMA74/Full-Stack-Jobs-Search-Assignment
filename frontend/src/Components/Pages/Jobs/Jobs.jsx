@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 const api = import.meta.env.VITE_API_URL;
 
 export default function Jobs() {
+    const [loading, setLoading] = useState(true);
     const [data, setData] = useState({});
     const [searchTerm, setSearchTerm] = useState('');
     const token = JSON.parse(localStorage.getItem("token"));
@@ -50,6 +51,8 @@ export default function Jobs() {
             setTotalPages(result.totalPages)
         } catch (error) {
             console.error('Error fetching data:', error);
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -143,50 +146,59 @@ export default function Jobs() {
                     onChange={handleSearchChange}
                 />
             </div>
-            <div className="job_company">
-                {data?.data?.map((job) => (
-                    <div key={job._id} className="job_card">
-                        <div className="position_logo">
-                            <h1>{job.jobDescription}</h1>
-                            <img src={job.logo} alt={`${job.company} logo`} className="company_logo" />
-                        </div>
-                        <p className="company_name">{job.company}</p>
-                        <div className="location_experience_ctc">
-                            <div className="location">
-                                <CiLocationOn className="icon" />
-                                <p>{job.workLocation}</p>
+            {loading ? (
+                <div className="loader_jobs">
+                    <div className="custom-loader"></div>
+                </div>
+            ) : (
+                <div>
+                    <div className="job_company">
+                        {data?.data?.map((job) => (
+                            <div key={job._id} className="job_card">
+                                <div className="position_logo">
+                                    <h1>{job.jobDescription}</h1>
+                                    <img src={job.logo} alt={`${job.company} logo`} className="company_logo" />
+                                </div>
+                                <p className="company_name">{job.company}</p>
+                                <div className="location_experience_ctc">
+                                    <div className="location">
+                                        <CiLocationOn className="icon" />
+                                        <p>{job.workLocation}</p>
+                                    </div>
+                                    <div className="experience">
+                                        <CiViewTimeline className="icon" />
+                                        <p>{job.experience || "N/A"}</p>
+                                    </div>
+                                    <div className="salary">
+                                        <BiRupee className="icon" />
+                                        <p>{job.ctc}</p>
+                                    </div>
+                                </div>
+                                <div className="posted_date">
+                                    <p>{new Date(job.postedDate).toDateString()}</p>
+                                    <button className="apply_button" id={job._id} onClick={handleApplyJobs}>
+                                        Apply
+                                    </button>
+                                </div>
                             </div>
-                            <div className="experience">
-                                <CiViewTimeline className="icon" />
-                                <p>{job.experience || "N/A"}</p>
-                            </div>
-                            <div className="salary">
-                                <BiRupee className="icon" />
-                                <p>{job.ctc}</p>
-                            </div>
-                        </div>
-                        <div className="posted_date">
-                            <p>{new Date(job.postedDate).toDateString()}</p>
-                            <button className="apply_button" id={job._id} onClick={handleApplyJobs}>
-                                Apply
-                            </button>
-                        </div>
+                        ))}
+
                     </div>
-                ))}
 
-            </div>
+                    <div className="pagination">
+                        {Array.from({ length: totalPages }, (_, index) => (
+                            <button
+                                key={index}
+                                className={`pagination_button ${currentPage === index + 1 ? 'active' : ''}`}
+                                onClick={() => handlePageChange(index + 1)}
+                            >
+                                {index + 1}
+                            </button>
+                        ))}
+                    </div>
+                </div>
+            )}
 
-            <div className="pagination">
-                {Array.from({ length: totalPages }, (_, index) => (
-                    <button
-                        key={index}
-                        className={`pagination_button ${currentPage === index + 1 ? 'active' : ''}`}
-                        onClick={() => handlePageChange(index + 1)}
-                    >
-                        {index + 1}
-                    </button>
-                ))}
-            </div>
         </div>
     );
 }
