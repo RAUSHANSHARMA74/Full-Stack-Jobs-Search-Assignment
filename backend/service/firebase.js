@@ -19,7 +19,7 @@ const serviceAccount = {
 
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
-    storageBucket: 'mobile-otp-7ad2e.appspot.com'
+    storageBucket: process.env.FIREBASE_STORAGE_BUCKET
 });
 
 const bucket = admin.storage().bucket();
