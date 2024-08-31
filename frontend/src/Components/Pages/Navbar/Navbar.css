@@ -1,0 +1,124 @@
+/* Navbar Styles */
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+.logo img {
+  width: 32px;
+  border-radius: 50%;
+}
+.logo_link {
+  text-decoration: none;
+  color: inherit;
+}
+.profile {
+  /* border: 1px solid red; */
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  gap: 20px;
+}
+.profile_image {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+.navbar {
+  border: 1px solid gray;
+  padding: 2vh 4vh;
+  background-color: #2c3e50;
+  color: #ffffff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 1000;
+}
+
+/* Navbar Container Styles */
+.navbar_container {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.hamburger_lines {
+  display: none; /* Hidden on larger screens */
+  cursor: pointer;
+  font-size: 1.5em;
+}
+
+.menu_items {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 70px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu_items li {
+  list-style: none;
+  padding: 4px 16px;
+  cursor: pointer;
+  border-radius: 8px;
+  border: 1px solid #2c3e50;
+  transition: border-bottom-color 0.5s ease, background-color 0.5s ease;
+}
+
+.menu_items li:hover {
+  border-bottom: 1px solid #2980b9;
+  color: #2980b9;
+}
+
+.menu_items li a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Tablet View */
+@media (max-width: 1024px) {
+  .hamburger_lines {
+    display: block; /* Show hamburger on smaller screens */
+  }
+
+  .menu_items {
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 60px;
+    right: -300px; /* Initially hide the menu off-screen */
+    background-color: #2c3e50;
+    padding: 16px 0;
+    gap: 32px;
+    width: 200px;
+    transition: right 0.8s ease; /* Smooth transition */
+  }
+
+  .menu_items.active {
+    right: 0px; /* Slide menu into view */
+  }
+}
+
+/* Mobile View */
+@media (max-width: 767px) {
+  .hamburger_lines {
+    display: block;
+  }
+
+  .menu_items {
+    width: 100%; /* Full width for mobile */
+    right: -100%; /* Initially hide the menu off-screen */
+  }
+
+  .menu_items.active {
+    right: 0; /* Slide menu into view */
+  }
+}

@@ -1,0 +1,18 @@
+.nopage {
+  margin-top: 8vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+}
+
+.nopage p {
+  font-size: 64px;
+  font-weight: bold;
+}
+@media (max-width: 1024px) {
+  .nopage p {
+    font-size: 24px;
+    font-weight: bold;
+  }
+}
