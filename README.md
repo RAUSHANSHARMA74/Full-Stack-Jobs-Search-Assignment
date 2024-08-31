@@ -53,7 +53,7 @@ This project includes a backend server and a frontend application designed to ha
      FIREBASE_AUTH_PROVIDER_X509_CERT_URL=
      FIREBASE_CLIENT_X509_CERT_URL=
      FIREBASE_UNIVERSE_DOMAIN=
-
+     FIREBASE_STORAGE_BUCKET=
      ```
 
    - Replace `your_mongodb_connection_string` with your actual MongoDB connection string.
