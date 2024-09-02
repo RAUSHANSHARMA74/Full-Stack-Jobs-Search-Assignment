@@ -30,18 +30,11 @@ export default function Navbar() {
                     });
                     if (response.ok) {
                         const data = await response.json();
+                        console.log(data.data.email, "data")
                         setUserData(data.data);
                         setProfile({
                             name: data.data.name,
                             image: data.data.profile // Adjust according to your data structure
-                        });
-                    } else {
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Oops...',
-                            text: 'Failed to fetch user data',
-                            timer: 3000,
-                            timerProgressBar: true
                         });
                     }
                 } catch (error) {
@@ -80,10 +73,12 @@ export default function Navbar() {
                     </li>
                     <li>
                         {profile ? (
-                            <div className="profile">
-                                <img className='profile_image' src={profile.image} alt={profile.name} />
-                                <p>{profile.name}</p>
-                            </div>
+                            <Link to="/profile" className='logo_link'>
+                                <div className="profile">
+                                    <img className='profile_image' src={profile.image} alt={profile.name} />
+                                    <h1>{profile.name}</h1>
+                                </div>
+                            </Link>
                         ) : (
                             <>
                                 <Link to="/login">

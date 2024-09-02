@@ -2,10 +2,13 @@ import React, { useState } from 'react';
 import "./Login.css";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
+
 const api = import.meta.env.VITE_API_URL;
 
 
 export default function Login() {
+    const navigate = useNavigate();
     const [showPassword, setShowPassword] = useState(false);
     const [formData, setFormData] = useState({
         email: '',
@@ -40,7 +43,7 @@ export default function Login() {
                     text: data.message,
                     icon: "success"
                 }).then(() => {
-                    window.location.href = "/"
+                    navigate('/');
                 })
             } else {
                 Swal.fire({

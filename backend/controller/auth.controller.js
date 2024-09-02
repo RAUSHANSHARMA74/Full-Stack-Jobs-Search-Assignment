@@ -41,7 +41,7 @@ export const register = async (req, res) => {
             password: hashPassword
         });
 
-        res.status(201).json({ message: "Signup successful", data: newUser });
+        res.status(201).json({ status: 201, message: "Signup successful", data: newUser });
     } catch (error) {
         console.error("Something went wrong during user registration:", error);
         res.status(500).json({ message: "An error occurred during registration" });

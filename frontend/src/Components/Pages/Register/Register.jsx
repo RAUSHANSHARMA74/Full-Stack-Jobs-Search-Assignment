@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import "./Register.css";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
+import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 const api = import.meta.env.VITE_API_URL;
 
 export default function Register() {
+    const navigate = useNavigate();
     const [showPassword, setShowPassword] = useState(false);
     const [formData, setFormData] = useState({
         name: '',
@@ -21,7 +24,7 @@ export default function Register() {
         if (type === 'file') {
             setFormData({
                 ...formData,
-                [name]: files[0] // Store the file object
+                [name]: files[0]
             });
         } else {
             setFormData({
@@ -51,8 +54,25 @@ export default function Register() {
                 method: 'POST',
                 body: data
             });
-
             const result = await response.json();
+            if (result.status == 201) {
+                Swal.fire({
+                    title: "Good job!",
+                    text: result.message,
+                    icon: "success"
+                }).then(() => {
+                    navigate('/login');
+                })
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: data?.message || 'Error fetching user data',
+                    timer: 3000,
+                    timerProgressBar: true
+                });
+            }
+
         } catch (error) {
             console.error('Error:', error);
         }

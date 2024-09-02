@@ -1,0 +1,106 @@
+.profile_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.profile_show {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  padding: 24px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile_show_image_div {
+  grid-column: span 2;
+  text-align: center;
+}
+
+.profile_show_image {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ddd;
+}
+
+.profile_name,
+.profile_email,
+.profile_gender,
+.profile_workExperience,
+.profile_linkedinProfile,
+.profile_resume {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-weight: bold;
+  color: #555;
+}
+
+p,
+a {
+  margin: 0;
+  color: #333;
+}
+
+a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+/* */
+.download_button {
+  display: inline-block;
+  padding: 8px 16px;
+  margin-top: 8px;
+  background-color: #007bff;
+  color: #fff;
+  text-align: center;
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+.download_button:hover {
+  background-color: #0056b3;
+}
+
+.logout {
+  grid-column: span 2;
+  text-align: center;
+  margin-top: 16px;
+}
+
+.logout button {
+  padding: 8px 16px;
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.logout button:hover {
+  background-color: #c82333;
+}
+
+@media (max-width: 768px) {
+  .profile_container {
+    margin-top: 16vh;
+  }
+  .profile_show {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .profile_show_image_div,
+  .logout {
+    grid-column: span 1;
+  }
+}

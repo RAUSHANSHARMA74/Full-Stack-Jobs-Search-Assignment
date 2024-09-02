@@ -1,15 +1,6 @@
-/* Container Styles */
-html,
-body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-}
-
 .container {
   width: 100%;
   border: 1px solid #fefce8;
-  background-color: #dde3f3;
   padding: 24px;
   box-sizing: border-box;
   display: flex;

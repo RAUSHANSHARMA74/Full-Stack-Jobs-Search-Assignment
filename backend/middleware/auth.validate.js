@@ -9,7 +9,7 @@ const authorization = (req, res, next) => {
             next();
         } catch (error) {
             console.error("Token verification failed:", error);
-            res.status(401).json({ status: 401, message: "Invalid or expired token. Please log in again." });
+            res.status(401).json({ status: 401, message: "Invalid or expired token. Please log in." });
         }
     } else {
         res.status(401).json({ status: 401, message: "Not Authorization" });

@@ -7,6 +7,7 @@ import Register from '../Pages/Register/Register';
 import Nopage from '../Pages/Nopage/Nopage';
 import Jobs from '../Pages/Jobs/Jobs';
 import About from '../Pages/About/About';
+import Profile from '../Pages/Profile/Profile';
 
 export default function Router() {
     return (
@@ -18,6 +19,7 @@ export default function Router() {
                 <Route path="/login" element={<Login />} />
                 <Route path="/jobs" element={<Jobs />} />
                 <Route path="/about" element={<About />} />
+                <Route path="/profile" element={<Profile />} />
                 <Route path="*" element={<Nopage />} />
             </Routes>
         </div>

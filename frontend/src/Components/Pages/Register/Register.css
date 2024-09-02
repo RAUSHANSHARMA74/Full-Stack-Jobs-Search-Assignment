@@ -2,6 +2,7 @@
 .form_container {
   /* border: 1px solid red; */
   margin-top: 8vh;
+  padding: 8px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -12,7 +13,7 @@
 form {
   /* border: 1px solid red; */
   background-color: white;
-  padding: 24px;
+  padding: 16px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   display: grid;

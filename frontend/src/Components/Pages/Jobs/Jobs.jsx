@@ -3,9 +3,12 @@ import "./Jobs.css";
 import { CiLocationOn, CiViewTimeline } from "react-icons/ci";
 import { BiRupee } from "react-icons/bi";
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
+
 const api = import.meta.env.VITE_API_URL;
 
 export default function Jobs() {
+    const navigate = useNavigate();
     const [loading, setLoading] = useState(true);
     const [data, setData] = useState({});
     const [searchTerm, setSearchTerm] = useState('');
@@ -22,7 +25,7 @@ export default function Jobs() {
             timer: 3000,
             timerProgressBar: true
         }).then(() => {
-            window.location.href = "/login"
+            navigate('/login');
         })
     }
 
@@ -36,15 +39,17 @@ export default function Jobs() {
                 }
             });
             const result = await response.json();
+            console.log(result)
             if (result.status != 200) {
                 Swal.fire({
                     icon: 'error',
                     title: 'Error',
-                    text: data?.message || 'Error fetching user data',
+                    text: result?.message || 'Error fetching user data',
                     timer: 3000,
                     timerProgressBar: true
                 }).then(() => {
-                    window.location.href = "/login"
+                    navigate('/login');
+
                 })
             }
             setData(result);
@@ -113,7 +118,7 @@ export default function Jobs() {
                     timer: 3000,
                     timerProgressBar: true
                 }).then(() => {
-                    window.location.href = "/login"
+                    navigate('/login');
                 })
             }
 
