@@ -4,13 +4,13 @@ import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 const api = import.meta.env.VITE_API_URL;
 
-export default function Profile() {
+export default function Profile({ token, setToken }) {
     const [userData, setUserData] = useState({});
     const navigate = useNavigate();
 
     useEffect(() => {
         const fetchUserData = async () => {
-            const token = JSON.parse(localStorage.getItem("token"));
+            // const token = JSON.parse(localStorage.getItem("token"));
             if (token && token.token) {
                 try {
                     const response = await fetch(`${api}/api/user`, {
@@ -41,6 +41,7 @@ export default function Profile() {
 
     const handleLogout = () => {
         localStorage.removeItem("token");
+        setToken("")
         Swal.fire({
             icon: 'success',
             title: 'Logged Out',

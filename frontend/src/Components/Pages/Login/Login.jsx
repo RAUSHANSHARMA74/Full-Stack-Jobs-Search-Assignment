@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 const api = import.meta.env.VITE_API_URL;
 
 
-export default function Login() {
+export default function Login({ setToken }) {
     const navigate = useNavigate();
     const [showPassword, setShowPassword] = useState(false);
     const [formData, setFormData] = useState({
@@ -38,6 +38,8 @@ export default function Login() {
             const data = await response.json();
             if (data.status == 200) {
                 localStorage.setItem("token", JSON.stringify(data))
+                const tokenValue = JSON.parse(localStorage.getItem("token"));
+                setToken(tokenValue)
                 Swal.fire({
                     title: "Good job!",
                     text: data.message,

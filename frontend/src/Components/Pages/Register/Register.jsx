@@ -104,7 +104,7 @@ export default function Register() {
                 <div className="form_group gender">
                     <label htmlFor="gender">Gender</label>
                     <select name="gender" id="gender" onChange={handleInputChange}>
-                        <option value="" disabled hidden>Select Gender</option>
+                        <option value="">Select Gender</option>
                         <option value="male">Male</option>
                         <option value="female">Female</option>
                         <option value="other">Other</option>

@@ -7,7 +7,7 @@ import Swal from 'sweetalert2';
 const api = import.meta.env.VITE_API_URL;
 
 
-export default function Navbar() {
+export default function Navbar({ token }) {
     const [isMenuOpen, setMenuOpen] = useState(false);
     const [userData, setUserData] = useState({});
     const [profile, setProfile] = useState(null);
@@ -18,7 +18,6 @@ export default function Navbar() {
 
     useEffect(() => {
         const fetchUserData = async () => {
-            const token = JSON.parse(localStorage.getItem("token"));
             if (token && token.token) {
                 try {
                     const response = await fetch(`${api}/api/user`, {
@@ -30,11 +29,11 @@ export default function Navbar() {
                     });
                     if (response.ok) {
                         const data = await response.json();
-                        console.log(data.data.email, "data")
+                        // console.log(data.data.email, "data")
                         setUserData(data.data);
                         setProfile({
                             name: data.data.name,
-                            image: data.data.profile // Adjust according to your data structure
+                            image: data.data.profile
                         });
                     }
                 } catch (error) {
@@ -50,7 +49,7 @@ export default function Navbar() {
         };
 
         fetchUserData();
-    }, []);
+    }, [token]);
 
     return (
         <nav className="navbar">
@@ -72,7 +71,7 @@ export default function Navbar() {
                         <Link to="/jobs">Jobs</Link>
                     </li>
                     <li>
-                        {profile ? (
+                        {profile && token ? (
                             <Link to="/profile" className='logo_link'>
                                 <div className="profile">
                                     <img className='profile_image' src={profile.image} alt={profile.name} />

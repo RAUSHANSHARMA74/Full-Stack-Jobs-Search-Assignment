@@ -7,12 +7,12 @@ import { useNavigate } from 'react-router-dom';
 
 const api = import.meta.env.VITE_API_URL;
 
-export default function Jobs() {
+export default function Jobs({ token }) {
     const navigate = useNavigate();
     const [loading, setLoading] = useState(true);
     const [data, setData] = useState({});
     const [searchTerm, setSearchTerm] = useState('');
-    const token = JSON.parse(localStorage.getItem("token"));
+    // const token = JSON.parse(localStorage.getItem("token"));
     const [totalPages, setTotalPages] = useState(1);
     const [currentPage, setCurrentPage] = useState(1);
     const apiurl = `${api}/api/jobs`;
